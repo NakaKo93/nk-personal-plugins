@@ -1,0 +1,8 @@
+{
+  "name": "nk-reflect",
+  "version": "0.1.0",
+  "description": "Session reflection plugin — analyzes Claude Code sessions and generates fix tasks",
+  "author": {
+    "name": "nk"
+  }
+}
