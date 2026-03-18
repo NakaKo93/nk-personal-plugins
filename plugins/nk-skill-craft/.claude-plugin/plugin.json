@@ -1,0 +1,8 @@
+{
+  "name": "nk-skill-craft",
+  "version": "0.1.0",
+  "description": "Skill authoring plugin — create, build, and validate Claude Code skills and subagents",
+  "author": {
+    "name": "nk"
+  }
+}
