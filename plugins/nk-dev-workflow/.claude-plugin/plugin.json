@@ -1,0 +1,8 @@
+{
+  "name": "nk-dev-workflow",
+  "version": "0.1.0",
+  "description": "Development workflow plugin — design to PR with safety guardrails",
+  "author": {
+    "name": "nk"
+  }
+}
