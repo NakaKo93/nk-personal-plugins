@@ -1,0 +1,43 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "nk-personal-plugins",
+  "description": "Personal Claude Code plugins for development workflows and skill tooling.",
+  "owner": {
+    "name": "nk"
+  },
+  "plugins": [
+    {
+      "name": "nk-dev-workflow",
+      "description": "Development workflow plugin",
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/NakaKo93/nk-personal-plugins.git",
+        "path": "plugins/nk-dev-workflow",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "nk-reflect",
+      "description": "Session reflection plugin",
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/NakaKo93/nk-personal-plugins.git",
+        "path": "plugins/nk-reflect",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "nk-skill-craft",
+      "description": "Skill authoring plugin",
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/NakaKo93/nk-personal-plugins.git",
+        "path": "plugins/nk-skill-craft",
+        "ref": "main"
+      }
+    }
+  ]
+}
