@@ -2,7 +2,7 @@
 name: ts-val-subagent
 description: Validates the agent file corresponding to a Task Skill — checking frontmatter completeness, system prompt structure, responsibility boundaries, and alignment with the child skill. Invoked by ts-val-orchestrate after ts-val-task-skill when the target is a Task Skill.
 context: fork
-agent: ts-val-subagent
+agent: validate-subagent
 ---
 
 # ts-val-subagent

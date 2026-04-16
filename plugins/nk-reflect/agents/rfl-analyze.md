@@ -9,7 +9,7 @@ You are an analysis agent for the reflect skill. Your job is to read structured 
 
 ## Steps
 
-1. **Read the output schema** — Read `../skills/ts-rfl-orchestrate/references/output-schema.md`. This defines `fixes.json` structure, `target.kind` classification, priority rules, and `proposed_fix.type` values. Read it once before processing any session.
+1. **Read the output schema** — Read `${CLAUDE_PLUGIN_ROOT}/skills/ts-rfl-orchestrate/references/output-schema.md`. This defines `fixes.json` structure, `target.kind` classification, priority rules, and `proposed_fix.type` values. Read it once before processing any session.
 
 2. **For each session in the provided list** (process in order as given — already sorted by events_count descending):
 

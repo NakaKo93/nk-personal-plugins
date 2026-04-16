@@ -21,8 +21,7 @@ You are an extraction agent for the reflect skill. Your job is to find all JSONL
 
 3. **Run extract_events.py for each file** — For each JSONL file:
    ```bash
-   SCRIPTS=../skills/ts-rfl-orchestrate/scripts
-   python $SCRIPTS/extract_events.py "<jsonl_path>" --reflection-root docs/tmp/reflection
+   python "${CLAUDE_PLUGIN_ROOT}/skills/ts-rfl-orchestrate/scripts/extract_events.py" "<jsonl_path>" --reflection-root docs/tmp/reflection
    ```
    Capture the single JSON line from stdout. Record the `status`, `artifacts_dir`, `fingerprint`, and any error message.
 
