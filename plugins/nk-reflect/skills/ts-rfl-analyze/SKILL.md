@@ -17,11 +17,11 @@ For each artifact in the provided list, read the `reflection_input.json`, classi
 
 Passed by the orchestrator:
 - Extraction report from rfl-extract (including JSON array of `{artifacts_dir, events_count}`)
-- Reference schema path: `../ts-rfl-orchestrate/references/output-schema.md`
+- Reference schema path: `${CLAUDE_PLUGIN_ROOT}/skills/ts-rfl-orchestrate/references/output-schema.md`
 
 ## Task-Specific Conditions
 
-- Read `../ts-rfl-orchestrate/references/output-schema.md` **once** before starting analysis
+- Read `${CLAUDE_PLUGIN_ROOT}/skills/ts-rfl-orchestrate/references/output-schema.md` **once** before starting analysis
 - Process sessions in the order provided (already sorted by events_count descending)
 - Apply Knowledge Skill routing decision order (from output-schema.md):
   - Step A: Workspace-specific rules (skill conventions, workspace workflow) → `behavior_rule` → CLAUDE.md
