@@ -1,0 +1,8 @@
+{
+  "name": "nk-env",
+  "version": "0.1.0",
+  "description": "Environment safety hooks — blocks dangerous commands and enforces safe Bash patterns",
+  "author": {
+    "name": "nk"
+  }
+}
