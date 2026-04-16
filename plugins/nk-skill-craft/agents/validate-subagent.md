@@ -1,5 +1,5 @@
 ---
-name: ts-val-subagent
+name: validate-subagent
 description: Validates the agent file corresponding to a Task Skill. Use when ts-val-orchestrate needs to check that the agents/<name>.md file is structurally complete and correctly aligned with its child skill.
 tools: Read, Glob, Grep
 model: inherit

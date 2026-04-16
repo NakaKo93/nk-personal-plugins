@@ -24,7 +24,7 @@ Apply each task based on its `proposed_fix.type`:
 
 | type | Where to apply | How |
 |---|---|---|
-| `behavior_rule` | `~/.claude/.claude/CLAUDE.md` (Key Constraints section) and `MEMORY.md` | Add the rule as a bullet under the relevant heading; also save to `MEMORY.md` for cross-session persistence |
+| `behavior_rule` | `~/.claude/CLAUDE.md` (Key Constraints section) and `MEMORY.md` | Add the rule as a bullet under the relevant heading; also save to `MEMORY.md` for cross-session persistence |
 | `prompt_change` | File specified in `proposed_fix.location` | Edit the SKILL.md body, agent file, or CLAUDE.md section named in the task |
 | `code_change` | Script file specified in `proposed_fix.location` | Edit or rewrite the relevant function/section |
 | `config_change` | Config file specified in `proposed_fix.location` | Edit settings.json, hooks config, or permissions as described |
@@ -39,7 +39,7 @@ Apply each task based on its `proposed_fix.type`:
 ## Apply Report
 
 ### Applied
-- T-001: behavior_rule → ~/.claude/.claude/CLAUDE.md + MEMORY.md
+- T-001: behavior_rule → ~/.claude/CLAUDE.md + MEMORY.md
 - T-002: knowledge_skill_update → skills/clarification-rules/references/scope-and-confirmation-rules.md
 
 ### Skipped

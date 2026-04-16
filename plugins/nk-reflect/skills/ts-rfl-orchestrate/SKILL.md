@@ -2,7 +2,7 @@
 name: ts-rfl-orchestrate
 description: Analyzes Claude Code session JSONL logs to identify what needs fixing in agents, skills, hooks, or processes, and generates a structured fix task list (fixes.json). This skill should be used when the user explicitly asks to reflect on a session — trigger phrases include "反省して", "reflect", "review session", or "analyze what went wrong". Never auto-trigger; always run on explicit user request only.
 disable-model-invocation: false
-allowed-tools: Read
+allowed-tools: Read, Skill
 ---
 
 # Reflection Skill
