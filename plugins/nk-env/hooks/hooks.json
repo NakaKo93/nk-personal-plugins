@@ -1,5 +1,5 @@
 {
-  "description": "nk-dev-workflow safety hooks",
+  "description": "nk-env safety hooks",
   "hooks": {
     "PreToolUse": [
       {

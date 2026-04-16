@@ -1,9 +1,7 @@
-# nk-dev-workflow
+# nk-git
 
-開発ワークフロープラグイン。
-設計から PR 作成までの一貫したフローを提供する。
-現在は git/commit/PR スキルと安全フックを搭載。
-今後、設計書作成・コーディング系スキルを追加予定。
+git 操作プラグイン。
+コミット・ブランチ・PR 作成の一貫したフローを提供する。
 
 ## スキル
 
@@ -25,22 +23,6 @@
 | `git-commit` | ts-git-commit |
 | `git-branch-commit` | ts-git-branch-commit |
 
-## フック
-
-| イベント | フック | 役割 |
-|---|---|---|
-| PreToolUse（Bash） | `block-dangerous.sh` | 危険なコマンドをブロック |
-| PreToolUse（Bash） | `block-compound-bash.sh` | `&&` `\|\|` `;` によるコマンド連結をブロック |
-| UserPromptSubmit | `no-compound-bash.sh` | Bash 連結禁止ルールをプロンプトに注入 |
-
-### block-dangerous.sh がブロックするパターン
-
-- `rm -rf /`、`rm -rf ~`、`rm -rf .`
-- `terraform apply/destroy --auto-approve`
-- `git push --force`、`git push -f`
-- `git push * main`、`git push * master`
-- `DROP TABLE`、`DROP DATABASE`
-
 ## 使い方
 
 | 目的 | トリガー |
@@ -59,9 +41,3 @@ docs/reference/git/
 ├── commit-format.md
 └── pr-guidelines.md
 ```
-
-## 追加予定スキル
-
-- 設計書作成スキル
-- コーディング規約スキル
-- コードレビュースキル
