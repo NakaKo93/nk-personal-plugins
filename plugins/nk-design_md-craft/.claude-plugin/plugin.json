@@ -1,0 +1,8 @@
+{
+  "name": "nk-design_md-craft",
+  "version": "0.1.0",
+  "description": "design.md creation plugin — interactively generates a 12-section design document through concept hearing, draft generation, and revision cycles",
+  "author": {
+    "name": "nk"
+  }
+}
