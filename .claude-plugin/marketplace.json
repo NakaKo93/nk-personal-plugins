@@ -7,13 +7,24 @@
   },
   "plugins": [
     {
-      "name": "nk-dev-workflow",
-      "description": "Development workflow plugin",
+      "name": "nk-git",
+      "description": "Git workflow plugin — commit, branch, and PR automation",
       "category": "development",
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/NakaKo93/nk-personal-plugins.git",
-        "path": "plugins/nk-dev-workflow",
+        "path": "plugins/nk-git",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "nk-env",
+      "description": "Environment safety hooks — blocks dangerous commands and enforces safe Bash patterns",
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/NakaKo93/nk-personal-plugins.git",
+        "path": "plugins/nk-env",
         "ref": "main"
       }
     },
