@@ -10,9 +10,17 @@ GitHub アカウントを自動判定し、プロジェクトの PR 記述ガイ
 ## 前提条件
 
 - `gh` CLI がインストールされていること（`gh auth status` で確認）
-- `~/.claude/.env` に `GH_COMPANY_ACCOUNT`・`GH_PERSONAL_ACCOUNT`・`GH_COMPANY_ORG` が設定されていること
+- `gh` に対象リポジトリのアカウントが認証済みであること（複数アカウント登録可）
 - 現在のブランチが `main` 以外であること（feature ブランチから PR を出す）
 - ブランチをリモートに push 済みであること（スキルは push しない）
+
+## アカウント自動判定
+
+`git remote get-url origin` から取得した owner を元に、以下の順で使用アカウントを特定する：
+
+1. owner がアカウント名と直接一致 → そのアカウントを使用
+2. owner が org の場合 → `gh api /orgs/<owner>/members/<account>` でメンバーシップ確認
+3. いずれも一致しない場合 → ユーザーに選択を求める
 
 ## 生成される PR 本文の構成
 

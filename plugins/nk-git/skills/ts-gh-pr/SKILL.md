@@ -2,7 +2,7 @@
 name: ts-gh-pr
 description: Creates a GitHub Pull Request using the gh CLI, following the project's PR writing guidelines (summary, background, changes, impact, review points, verification steps). This skill should be used when the user wants to create a PR, open a pull request, or submit changes for review — trigger phrases include "PRを作って", "プルリクエスト作成して", "create a PR", "この変更をPRにして".
 disable-model-invocation: false
-allowed-tools: Bash(gh:*), Bash(git:*), Bash(source:*)
+allowed-tools: Bash(gh:*), Bash(git:*)
 ---
 
 # GitHub PR Creator
@@ -33,45 +33,52 @@ Typical user messages that trigger this skill:
 
 ### Step 1: Verify Prerequisites and Select Account
 
-**1-a. Load account config and detect the correct GitHub account:**
+**1-a. Detect the correct GitHub account from remote URL:**
 
 ```bash
-source ~/.claude/.env
 git remote get-url origin
 ```
 
-Check if the remote URL matches the company account or company org:
+Parse the owner from the remote URL (handles both standard and SSH-alias hostnames):
+
+- `git@github.com:owner/repo.git` → owner = `owner`
+- `git@<alias>:owner/repo.git` → owner = `owner`
+- `https://github.com/owner/repo.git` → owner = `owner`
 
 ```bash
-if echo "$REMOTE" | grep -qE "$GH_COMPANY_ACCOUNT|$GH_COMPANY_ORG"; then
-  USE_ACCOUNT=$GH_COMPANY_ACCOUNT
-else
-  USE_ACCOUNT=$GH_PERSONAL_ACCOUNT
-fi
+gh auth status
 ```
+
+Determine the account to use:
+
+1. **Direct match**: if `owner` matches one of the authenticated account names → use that account
+2. **Org match**: if no direct match, for each authenticated account check org membership:
+   ```bash
+   gh api /orgs/<owner>/members/<account> --silent
+   # HTTP 204 = member → use this account
+   # HTTP 404 = not a member → try next account
+   ```
+3. **Fallback**: if no match found, warn the user and ask which account to use.
 
 Switch to the detected account:
 
 ```bash
-gh auth switch --user "$USE_ACCOUNT"
+gh auth switch --user "<detected-account>"
 ```
 
 Report to the user which account will be used:
 ```
-GitHub account: <account-name>  (company / personal)
+GitHub account: <account-name>
 ```
 
 **1-b. Run the standard checks:**
 
 ```bash
-gh auth status
 git branch --show-current
 git status -sb
 ```
 
 **If `gh` is not authenticated:** Guide the user to run `gh auth login` and stop.
-
-**If `~/.claude/.env` is missing or variables are unset:** Warn the user to create `~/.claude/.env` with `GH_COMPANY_ACCOUNT`, `GH_PERSONAL_ACCOUNT`, and `GH_COMPANY_ORG`.
 
 **If on `main` or `master`:** Inform the user that PRs should be created from a feature branch. Offer to run the `ts-git-branch` skill to create one.
 
@@ -170,8 +177,9 @@ Branch:     <branch> → <base>
 
 ## Error Handling
 
-- **`gh` not found**: Guide the user to install the GitHub CLI (`https://cli.github.com/`) and run `gh auth login`.
+- **`gh` not found**: Guide the user to install the GitHub CLI and run `gh auth login`.
 - **Not authenticated**: Run `gh auth status` to confirm, then guide the user through `gh auth login`.
+- **Account not detected**: If neither direct match nor org membership resolves to an account, list the authenticated accounts and ask the user to choose.
 - **Branch not pushed**: Offer to push with `git push -u origin <branch>` and wait for confirmation.
 - **On main/master**: Stop. Suggest using the `ts-git-branch` skill to create a feature branch first.
 - **PR already exists for this branch**: Inform the user and offer to open the existing PR with `gh pr view --web`.
