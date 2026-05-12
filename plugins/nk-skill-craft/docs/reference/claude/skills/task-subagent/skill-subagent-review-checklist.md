@@ -24,10 +24,10 @@
 
 ## orchestrator skill の品質
 
-- [ ] ステップ数が ≤3
-- [ ] 専門的な実装ステップが inline にない（全て child skill に委譲している）
 - [ ] `allowed-tools` が最小限（通常 `Read` のみ）
 - [ ] `description` にトリガーフレーズが含まれている
+
+ステップ数・委譲の徹底・命名パターンは `skill-review-checklist.md` Section I を参照。
 
 ---
 
@@ -44,6 +44,7 @@
 
 - [ ] 各 subagent が単一の expressible な責務を持つ
 - [ ] 読み取り専用 subagent（reviewer / researcher）に `Write` / `Edit` がない
+- [ ] subagent の `tools:` に `Agent` / `Skill` が含まれていない（Claude Code の仕様上 subagent → subagent は不可）
 - [ ] system prompt に役割定義・番号付き手順・制約・出力形式が含まれている
 - [ ] PJ 固有ルール（今回の JSON・命名規則・重点観点）が混入していない
 
@@ -60,7 +61,24 @@
 
 - [ ] subagent は `~/.claude/agents/` または `.claude/agents/` にある
 - [ ] skill は `~/.claude/skills/<name>/SKILL.md` にある
-- [ ] `references/` に `docs/` 内容のコピーがない
+- [ ] 出力フォーマット・JSON スキーマ・ファイルテンプレートが SKILL.md にインラインで定義されておらず `references/` または `docs/` に配置されている
+
+`docs/` と `references/` の配置ルール（コピー禁止・単一ソース等）は `file-placement-checklist.md` を参照。
+
+---
+
+## 共通化の実装確認
+
+- [ ] 複数の skill/subagent で共通して使うルール・ガイドラインが SKILL.md や references/ に重複定義されておらず `docs/` に集約されている
+- [ ] 設計フェーズの Section 10（Shared Resource Candidates）で「Reusable: Yes」とされたコンテンツが `docs/` に配置されている
+- [ ] docs/ と references/ の分離ルールは `file-placement-checklist.md` も参照
+
+---
+
+## Python自動化の実装確認
+
+- [ ] 設計フェーズの Section 9（Automation Opportunities）で「Automatable: Yes」とされたステップに対応するスクリプトが `scripts/` に実装されている
+- [ ] 構造的・反復的タスク（frontmatter 生成、命名チェック、リンク検証等）が AI ではなく Python スクリプトで実行されている
 
 ---
 

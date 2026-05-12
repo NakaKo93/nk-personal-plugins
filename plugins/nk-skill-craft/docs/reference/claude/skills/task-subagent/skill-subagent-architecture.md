@@ -204,3 +204,4 @@ frontmatter の書き方は `skill-writing-guide.md` を参照。
 10. subagent は不変の専門性を書く
 11. docs は正本、reference は補助とする
 12. 場合によって流儀を変えない
+13. subagent の tools に `Agent` / `Skill` を含めない（subagent → subagent は Claude Code の仕様上不可）

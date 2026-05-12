@@ -16,7 +16,7 @@ Legend: ❌ = must fix before packaging | ⚠️ = should fix (quality) | ✅ = 
 - [G. Trigger Accuracy](#g-trigger-accuracy)
 - [H. Testing & Evaluation](#h-testing--evaluation)
 - [I. Skill Architecture](#i-skill-architecture)
-- [J. File Placement (docs vs references)](#j-file-placement-docs-vs-references)
+- [J. File Placement (docs vs references)](#j-file-placement-docs-vs-references) → [file-placement-checklist.md](file-placement-checklist.md)
 - [Reporting Format](#reporting-format)
 
 ---
@@ -172,35 +172,16 @@ Testing is performed **after** placing the skill, not during pre-packaging revie
 | I-1 | ⚠️ | Skill has exactly one purpose expressible in a single sentence | Read description — if "and" joins two distinct goals, consider splitting |
 | I-2 | ⚠️ | Top-level workflow step count is 2–3 (modules) | Count `###` headers under `## Steps` |
 | I-3 | ❌ | If step count is 4+, splitting has been explicitly evaluated | Skill body must justify size, or it should be split |
-| I-4 | ⚠️ | If this is an orchestrator skill: body contains ONLY sub-skill invocations, no procedural steps | Verify no detailed workflow besides `/skill-name` calls |
+| I-4 | ⚠️ | If this is an orchestrator skill: body contains ONLY sub-skill invocations, no procedural steps (see [skill-subagent-architecture.md](skill-subagent-architecture.md)) | Verify no detailed workflow besides `/skill-name` calls |
 | I-5 | ⚠️ | Skill chain depth does not exceed ~5 invocations | Trace the full invocation chain from this skill |
-| I-6 | ⚠️ | Skill name follows verb+purpose pattern (e.g., `create-skill`, `reflect`, `ts-val-orchestrate`) | Check `name:` in frontmatter |
+| I-6 | ⚠️ | Skill name follows verb+purpose pattern (e.g., `create-skill`, `reflect`, `ts-val-orchestrate`) (see [skill-subagent-architecture.md](skill-subagent-architecture.md) and [skill-writing-guide.md](skill-writing-guide.md)) | Check `name:` in frontmatter |
 | I-7 | ⚠️ | No similar installed skill has overlapping purpose (no structural bloat) | Compare against the skills list; consolidate if overlap found |
 
 ---
 
 ## J. File Placement (docs vs references)
 
-Rules for distinguishing `docs/` (authoritative human documents) from `references/` (skill-execution aids).
-
-| # | Severity | Item | How to check |
-|---|---|---|---|
-| J-1 | ❌ | `references/` files do not contain content that belongs in `docs/`: design policies, naming rules, review criteria, or operational rules that humans agree on and update | Read each reference file — if the content reads as a shared standard or policy, it should live in `docs/` |
-| J-2 | ⚠️ | `references/` files contain only skill-execution aids: output formats, JSON schemas, report templates, few-shot examples, or skill-specific I/O contracts | Verify each reference file serves the skill's runtime needs, not documentation purposes |
-| J-3 | ❌ | `references/` files are not paraphrases or excerpts of `docs/` content (no knowledge copy-paste) | If a reference file says the same thing as a docs file, remove it and link to the docs source instead |
-| J-4 | ⚠️ | `docs/` files do not contain skill-specific output templates, schemas, or execution-only helpers | Check that `docs/` content is suitable for humans to read and update independently of any skill |
-| J-5 | ❌ | There is a clear single source of truth: if similar content exists in both `docs/` and `references/`, one is the authority and the other is derived (with an explicit link) | Look for duplicated rules or descriptions across the two locations |
-
-**Decision aid:**
-
-| Question | → Location |
-|---|---|
-| Will a human read and agree on this as a standard? | `docs/` |
-| Is this needed only when Claude executes this skill? | `references/` |
-| Does this define shared naming, design, or review policy? | `docs/` |
-| Is this an output template, schema, or few-shot example? | `references/` |
-| Would another skill or team member also need this? | `docs/` |
-| Is this useful only inside this skill's workflow? | `references/` |
+See [file-placement-checklist.md](file-placement-checklist.md) for the full checklist and decision aid.
 
 ---
 
@@ -221,7 +202,7 @@ After going through all items, report the results in this format:
 | F. Workflow Quality | n | n | n |
 | G. Trigger Accuracy | n | n | n |
 | I. Skill Architecture | n | n | n |
-| J. File Placement | n | n | n |
+| J. File Placement ([file-placement-checklist.md](file-placement-checklist.md)) | n | n | n |
 
 ### Issues Found
 

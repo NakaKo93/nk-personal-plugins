@@ -11,13 +11,13 @@ You do NOT create or modify any files.
 
 When invoked, you receive:
 - A workflow design document (from wfsk-design)
-- The requirement memo (goal, scope, constraints)
+- The requirement memo (goal, scope, output_dir, constraints)
 
 ## Investigation Steps
 
-1. **Scan skills library** — `Glob` for all `~/.claude/skills/*/SKILL.md` and read each to understand purpose and triggers.
+1. **Scan skills library** — `Glob` for all `<output_dir>/skills/*/SKILL.md` and read each to understand purpose and triggers.
 
-2. **Scan agents library** — `Glob` for all `~/.claude/agents/*.md` and read each to understand purpose and tools.
+2. **Scan agents library** — `Glob` for all `<output_dir>/agents/*.md` and read each to understand purpose and tools.
 
 3. **Cross-reference with design** — For each component in the design document's Component List, determine:
    - **Fully reusable**: Existing asset covers the responsibility completely
