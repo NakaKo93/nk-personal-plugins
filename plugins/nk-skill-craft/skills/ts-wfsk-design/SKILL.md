@@ -28,6 +28,9 @@ The requirement memo passed by the orchestrator, containing:
 - Limit component count to ≤5 subagents unless strictly necessary
 - Each component must have a single, expressible responsibility
 - Prefer linear chains over orchestrators when the flow is sequential
+- For each component, evaluate whether any steps are structural/deterministic enough to automate with a Python script (e.g., validation, file generation, naming checks). Document findings in Section 9.
+- For each rule, guideline, or reference document introduced in this design, evaluate whether other skills could also use it. If yes, it belongs in `docs/` not in skill-specific files. Document findings in Section 10.
+- For any output format, JSON schema, or file template defined in this design, plan to place it in `references/` (skill-specific) or `docs/` (cross-skill shared). Never leave templates inline in SKILL.md.
 
 ## Output Format
 
@@ -40,7 +43,9 @@ A Markdown design document with sections:
 6. Component List (table: Component | Type | Responsibility | Single sentence)
 7. Responsibility Split
 8. Reuse Candidates
-9. Review Criteria
+9. Automation Opportunities (table: Component | Step | Automatable? | Reason)
+10. Shared Resource Candidates (table: Content | Proposed Location | Reusable Across Skills? | Reason)
+11. Review Criteria
 
 Followed by the standard output block:
 ```
